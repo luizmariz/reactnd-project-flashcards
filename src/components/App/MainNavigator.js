@@ -1,11 +1,17 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Decks from './Decks';
+import NewDeck from './NewDeck';
 
 
 const MainNavigator = createStackNavigator(
   {
     Home: {
       screen: Decks
+    },
+    CreateDeck: {
+      screen: NewDeck,
+      headerBackTitleVisible: true,
+      headerBackTitle: 'back'
     }
   },
   {
