@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList, Dimensions, Text } from 'react-native';
+import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 import Button from '../../shared/Button';
 import Deck from './Deck';
@@ -29,13 +30,20 @@ const Footer = styled.View`
 `
 
 class Decks extends Component {
+
+  navigateToCreateDeck = () => {
+    this.props.navigation.navigate('CreateDeck');
+  }
+
   render() {
+    const { decks } = this.props;
+
     return(
       <Container>
         <Title>Decks</Title>
         <FlatListContainer>
           <FlatList
-            data={[{key: 'Pokemon', numOfCards: 13}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}, {key: 'Magic', numOfCards: 35}]}
+            data={decks}
             renderItem={({item}) =>
               <Deck
                 name={item.key}
@@ -47,7 +55,8 @@ class Decks extends Component {
         <Footer>
           <Button
             text='new deck'
-            iconName='ios-add'
+            iconName='add'
+            onClick={this.navigateToCreateDeck}
           />
         </Footer>
       </Container>
@@ -55,4 +64,11 @@ class Decks extends Component {
   }
 }
 
-export default Decks;
+function mapStateToProps ({decks}) {
+  return {
+    decks: Object.values(decks)
+      .map(deck => ({key: deck.name, ...deck}))
+  }
+}
+
+export default connect(mapStateToProps)(Decks);

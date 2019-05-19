@@ -1,7 +1,7 @@
 import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Dimensions, TouchableOpacity } from 'react-native'
-import { purple, lightGrey } from '../../../utils/colors';
+import { colorPallet } from '../../../utils/colors';
 import { string, number } from 'prop-types';
 import styled from 'styled-components/native';
 
@@ -12,7 +12,7 @@ const ListItem = styled.View`
   justify-content: space-between;
   flex-direction: row;
   width: ${width};
-  border-bottom-color: ${lightGrey};
+  border-bottom-color: ${props => props.theme.lightGrey};
   border-bottom-width: 1;
   border-style: solid;
   padding-right: 60;
@@ -25,8 +25,9 @@ const ItemInfo = styled.View`
   flex-direction: column;
 `
 const ItemName = styled.Text`
-  font-size: 20;
+  font-size: 19;
   font-weight: 400;
+  color: #454545;
 `
 const ItemNumCards = styled.Text`
   font-size: 16;
@@ -43,10 +44,10 @@ const Deck = ({name, numOfCards}) => {
           <ItemName>{name.toLowerCase()}</ItemName>
           <ItemNumCards>{numOfCards} cards</ItemNumCards>
         </ItemInfo>
-        <Ionicons
-          name='ios-arrow-forward'
-          size={22}
-          color={purple}
+        <MaterialIcons
+          name='keyboard-arrow-right'
+          size={28}
+          color={colorPallet.purple}
         />
       </ListItem>
     </TouchableOpacity>
@@ -56,6 +57,6 @@ const Deck = ({name, numOfCards}) => {
 Deck.propTypes = {
   name: string.isRequired,
   numOfCards: number.isRequired
-}
+};
 
 export default Deck;
