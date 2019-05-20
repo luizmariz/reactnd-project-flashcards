@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 
 const StyledButton = styled.View`
   border-width: 3;
-  border-color: ${props => props.theme.purple};
+  border-color: ${props => props.color};
   width: 70%;
   opacity: ${props => props.isDisabled
     ? 0.4
@@ -15,7 +15,7 @@ const StyledButton = styled.View`
   };
   padding-right: 10%;
   padding-left: 10%;
-  background-color: ${props => props.isSelected ? props.theme.purple : '#ffffff'};
+  background-color: ${props => props.isSelected ? props.color : '#ffffff'};
 `
 const Row = styled.View`
   flex-direction: row;
@@ -24,7 +24,10 @@ const Row = styled.View`
   height: 50;
 `
 const ButtonText = styled.Text`
-  color: ${props => props.isSelected ? '#ffffff' : props.theme.purple };
+  color: ${props => props.isSelected
+    ? '#ffffff'
+    : props.color
+  };
   font-size: 16;
   font-weight: bold;
 `
@@ -39,13 +42,18 @@ class Button extends Component {
   }
 
   render() {
-    const { text, iconName, onClick, disabled } = this.props;
+    const { text, iconName, onClick, disabled, color, style } = this.props;
     const { isSelected } = this.state;
 
     return (
       <StyledButton
         isSelected={isSelected}
         isDisabled={disabled}
+        color={color
+          ? color
+          : colorPallet.purple
+        }
+        style={style}
       >
         <TouchableWithoutFeedback
           onPressIn={this.handleToggleBtn}
@@ -60,12 +68,22 @@ class Button extends Component {
                 name={iconName}
                 color={isSelected
                   ? '#ffffff'
+                  : color
+                  ? color
                   : colorPallet.purple
                 }
                 size={30}
               />
             }
-            <ButtonText isSelected={isSelected}>{text.toUpperCase()}</ButtonText>
+            <ButtonText
+              isSelected={isSelected}
+              color={color
+                ? color
+                : colorPallet.purple
+              }
+            >
+              {text.toUpperCase()}
+            </ButtonText>
           </Row>
         </TouchableWithoutFeedback>
       </StyledButton>
@@ -77,7 +95,8 @@ Button.propTypes = {
   text: string.isRequired,
   onClick: func.isRequired,
   iconName: string,
-  disabled: bool
+  disabled: bool,
+  color: string
 };
 
 export default Button;
