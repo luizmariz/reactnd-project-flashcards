@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 const width = Dimensions.get('window').width;
 
 export const Title = styled.Text`
-  font-size: 45;
+  font-size: 32;
   font-weight: 300;
   margin-bottom: 30;
   color: #454545;

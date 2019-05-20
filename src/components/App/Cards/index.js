@@ -9,13 +9,9 @@ import Card from './Card';
 
 const QuizBtn = styled(Button)`
   margin-top: 13;
-  margin-bottom: 10;
-`
-const DeckName = styled(Title)`
-  font-size: 32;
 `
 const SubTitle = styled.Text`
-  margin-top: -28;
+  margin-top: -29;
   margin-bottom: 20;
   color: #454545;
   font-size: 20;
@@ -61,7 +57,7 @@ class Cards extends Component {
 
     return(
       <Container>
-        <DeckName>{deck.name}</DeckName>
+        <Title>{deck.name}</Title>
         <SubTitle>{cards.length} cards</SubTitle>
         <FlatListContainer>
 
