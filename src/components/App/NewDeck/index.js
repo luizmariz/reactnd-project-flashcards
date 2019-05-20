@@ -3,9 +3,17 @@ import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { generateNewDeck } from '../../../utils/helpers';
 import { createDeck } from '../../../actions/decks';
+import { StackActions, NavigationActions } from 'react-navigation';
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
 import styled from 'styled-components/native';
+
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Home' }),
+  ],
+}); // Clearing the stack, we allow the user to go back from cardsView to deckView
 
 const Container = styled.View`
   justify-content: flex-end;
@@ -29,7 +37,9 @@ class NewDeck extends Component {
     const deck = generateNewDeck(this.state.text);
 
     newDeck(deck);
-    navigation.navigate('Home');
+
+    navigation.dispatch(resetAction); // clear the stack before navigate
+    navigation.navigate('Cards', {name: deck.name});
   }
 
   render() {

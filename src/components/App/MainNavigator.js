@@ -1,6 +1,9 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Decks from './Decks';
+import Cards from './Cards';
 import NewDeck from './NewDeck';
+import NewCard from './NewCard';
+import Quiz from './Quiz';
 
 
 const MainNavigator = createStackNavigator(
@@ -8,10 +11,17 @@ const MainNavigator = createStackNavigator(
     Home: {
       screen: Decks
     },
+    Cards: {
+      screen: Cards
+    },
+    CreateCard: {
+      screen: NewCard
+    },
     CreateDeck: {
-      screen: NewDeck,
-      headerBackTitleVisible: true,
-      headerBackTitle: 'back'
+      screen: NewDeck
+    },
+    Quiz: {
+      screen: Quiz
     }
   },
   {

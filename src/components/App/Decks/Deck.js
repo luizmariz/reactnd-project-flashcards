@@ -36,9 +36,9 @@ const ItemNumCards = styled.Text`
   color: #CCCCCC;
 `
 
-const Deck = ({name, numOfCards}) => {
+const Deck = ({name, numOfCards, onClick}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onClick}>
       <ListItem>
         <ItemInfo>
           <ItemName>{name.toLowerCase()}</ItemName>
