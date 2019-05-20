@@ -44,7 +44,7 @@ function createNotification () {
 
 export function clearLocalNotification () {
   store.dispatch(clearNotification({key: NOTIFICATION_KEY}));
-  return Notifications.cancelAllScheduledNotificationsAsync;
+  return Notifications.cancelAllScheduledNotificationsAsync();
 }
 
 export function setLocalNotification () {
@@ -53,7 +53,7 @@ export function setLocalNotification () {
   if (data.notification[NOTIFICATION_KEY] === null || data.notification[NOTIFICATION_KEY] === undefined) {
     Permissions.askAsync(Permissions.NOTIFICATIONS)
       .then(({status}) => {
-        console.log('oi')
+
         if (status === 'granted') {
           Notifications.cancelAllScheduledNotificationsAsync()
 
