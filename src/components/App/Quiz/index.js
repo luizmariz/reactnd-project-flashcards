@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Container } from '../../shared/styled';
 import { getPercentage } from '../../../utils/helpers'
@@ -6,7 +6,7 @@ import Questions from './Questions';
 import Result from './Result';
 
 
-class Quiz extends Component {
+class Quiz extends PureComponent {
   state = {
     showResult: false,
     correctPercentage: 0
